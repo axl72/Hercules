@@ -5,15 +5,15 @@ from controller.downloader import *
 if __name__ == "__main__":
 
     if len(sys.argv) == 1:
-        print("Downloader needs a url")
+        print("Hercules needs a url")
         sys.exit(1)
 
-    dir = Playlist(sys.argv[1]).title
+    title = Playlist(sys.argv[1]).title
 
     try:
-        path = sys.argv[2] + dir
+        path = sys.argv[2] + "/" + title
     except:
-        path = './' + dir
+        path = './' + title
 
     cont = 0
     aux_path = path
@@ -23,4 +23,4 @@ if __name__ == "__main__":
     path = aux_path
     os.mkdir(path)
 
-    downloadPlaylist(sys.argv[1], path)
+    error_list = downloadPlaylist(sys.argv[1], path)
