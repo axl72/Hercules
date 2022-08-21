@@ -1,12 +1,14 @@
+from sys import prefix
 from pytube import Playlist, YouTube
 
 
-def downloadVideo(url, path, index=''):
+def downloadVideo(url, path, prefix=''):
     try:
         yt = YouTube(url)
         stream = yt.streams.get_audio_only()
-        file_name = index + stream.default_filename
-        stream.download(output_path=path, filename=file_name)
+        file_name = stream.default_filename.replace('mp4', 'mp3')
+        stream.download(output_path=path, filename=file_name,
+                        filename_prefix=prefix)
 
         return (True, yt.title)
     except Exception as e:
@@ -18,7 +20,7 @@ def downloadPlaylist(url, path):
     error_list = []
     p = Playlist(url)
     for index, url in enumerate(p.video_urls):
-        result = downloadVideo(url, path, f"{index+1}. ")
+        result = downloadVideo(url, path, f'{index+1}. ')
         if(not result[0]):
             error_list.append(result[1])
     return error_list
