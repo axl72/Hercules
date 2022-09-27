@@ -1,6 +1,6 @@
 from sys import prefix
 from pytube import Playlist, YouTube
-
+import sys
 
 def downloadVideo(url, path, prefix=''):
     try:
@@ -24,3 +24,4 @@ def downloadPlaylist(url, path):
         if(not result[0]):
             error_list.append(result[1])
     return error_list
+
