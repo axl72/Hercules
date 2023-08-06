@@ -1,6 +1,8 @@
 from sys import prefix
 from pytube import Playlist, YouTube
 import sys
+from colorama import Fore, Back, Style, init
+init()
 
 def downloadVideo(url, path, prefix=''):
     try:
@@ -9,7 +11,6 @@ def downloadVideo(url, path, prefix=''):
         file_name = stream.default_filename.replace('mp4', 'mp3')
         stream.download(output_path=path, filename=file_name,
                         filename_prefix=prefix)
-
         return (True, yt.title)
     except Exception as e:
         print(e)
@@ -23,5 +24,6 @@ def downloadPlaylist(url, path):
         result = downloadVideo(url, path, f'{index+1}. ')
         if(not result[0]):
             error_list.append(result[1])
+        print(f"{index+1}. {result[1]} - {Fore.GREEN+('Descargado' if result[0] else Fore.RED+'Error al descargar') + Fore.RESET}")
     return error_list
 
