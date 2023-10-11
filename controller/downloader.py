@@ -27,3 +27,12 @@ def downloadPlaylist(url, path):
         print(f"{index+1}. {result[1]} - {Fore.GREEN+('Descargado' if result[0] else Fore.RED+'Error al descargar') + Fore.RESET}")
     return error_list
 
+def download_any(url:str, path:str):
+    try:
+        downloadVideo(url, path)
+    except Exception as e:
+        try:
+            downloadPlaylist(url, path)
+        except:
+            print("No se puede descargar la url seleccionada")
+
