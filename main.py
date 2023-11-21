@@ -3,9 +3,10 @@
 import sys
 import argparse
 import os
-from controller.downloader import *
+from core.downloader import Downloader
 from tkinter.filedialog import askdirectory
 from colorama import Fore, Back, Style, init
+from pytube import Playlist, YouTube
 
 # Inicialización de colorama
 init()
@@ -17,6 +18,7 @@ parser.add_argument('-l', action='store_true')
 
 if __name__ == "__main__":
     args = parser.parse_args()
+    donwloader = Downloader()
 
     if args.l:
         title = Playlist(args.url[0]).title
@@ -33,7 +35,7 @@ if __name__ == "__main__":
             #print(args.directory[0], type(args.directory))
             print("Directorio donde se descargará la playlist:  ", path)
             sys.exit()
-        error_list = downloadPlaylist(args.url[0], path)
+        error_list = donwloader.download_Playlist(args.url[0], path)
         print(f"{Fore.BLUE}Descarga terminada exitosamente{Fore.RESET}")
 
     else:
@@ -43,4 +45,4 @@ if __name__ == "__main__":
         except:
             sys.exit()
 
-        estate, title = downloadVideo(args.url[0], path)
+        estate, title = donwloader.download_video(args.url[0], path)
