@@ -1,2 +1,5 @@
 # Hercules
-Hercules is a powerful program to download videos from Youtube, Instagram, Facebook and Twitter in many formats like .mp3, .mp4, .mkv, etc.
+Hercules is a simple program to download videos from Youtube in formats like mp3 or mp4.
+
+# Installation
+Missed rigt now.
