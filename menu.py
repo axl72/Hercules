@@ -10,6 +10,7 @@ from core.downloader import Downloader
 from core.config import Config
 from threading import Thread
 from components.TreeView import MyTreeview
+from services.Database import DatabaseService
 
 
 class Button(tk.Button):
@@ -40,9 +41,12 @@ class MainWindow(tk.Tk):
         useTk: bool = True,
         sync: bool = False,
         use: str | None = None,
+        databaseService=DatabaseService("./archives/mymusic.json"),
     ) -> None:
         super().__init__(screenName, baseName, className, useTk, sync, use)
+        self.databaseService = databaseService
         self.geometry("500x380")
+        self.resizable(False, False)
         self.url = tk.StringVar()
 
         self.title("Hercules - Download wath you want")
@@ -128,6 +132,7 @@ class MainWindow(tk.Tk):
         # Empaquetar las scrollbars
         self.h_scroll.pack(side=tk.BOTTOM, fill=tk.X)
         self.treeview.pack(fill="y", padx=10, pady=10)
+        self.treeview.load_data(self.databaseService.read_all())
         self.frame_4.pack(fill=tk.BOTH, side="top")
 
     def download_video(self):
@@ -139,12 +144,17 @@ class MainWindow(tk.Tk):
         url = str(self.input_1.get())
         path = str(self.input_2.get())
 
-        print(f"Url selected is '{url}'")
-        print(f"Path selected is '{path}'")
-
-        result, data = self.donwloader.download_any(url, path)
-        if result:
+        downloaded, data = self.donwloader.download_any(url, path)
+        if downloaded:
             values = (str(data["size"]) + " Mb", url, path)
+            self.databaseService.add_line(
+                {
+                    "title": data["title"],
+                    "size": values[0],
+                    "url": url,
+                    "saved_path": path,
+                }
+            )
             self.treeview.add_node("", data["title"], values)
         print(data)
         self.boton_1.config(state=tk.NORMAL)

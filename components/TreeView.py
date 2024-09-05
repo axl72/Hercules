@@ -30,3 +30,11 @@ class MyTreeview(Treeview):
         item = self.identify_row(event.y)
         if item:
             print(f"Clic en el ítem: {self.item(item, 'text')}")
+
+    def load_data(self, registers):
+        for register in registers:
+            self.add_node(
+                "",
+                register["title"],
+                (register["size"], register["url"], register["saved_path"]),
+            )
