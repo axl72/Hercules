@@ -1,5 +1,8 @@
 from dataclasses import dataclass
+import os
+
+USER = os.getlogin()
 
 @dataclass
 class Config():
-    DOWNLOAD_PATH:str = "C:/Users/Axell/Music/Hercules"
+    DOWNLOAD_PATH:str = f"C:/Users/{USER}/Music/Hercules"
