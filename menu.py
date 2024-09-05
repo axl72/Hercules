@@ -87,7 +87,7 @@ class MainWindow(tk.Tk):
         # self.download_options_combobox["values"] = ("mp3", "mp4")
         self.boton_2 = tk.Button(self.frame_3, text="...", command=self.set_path)
         self.boton_3 = tk.Button(
-            self.frame_3, text="Ver carpeta", command=self.see_path
+            self.frame_3, text="Open folder", command=self.see_path
         )
         self.input_2 = tk.Entry(self.frame_3, width=40, textvariable=self.path)
 
