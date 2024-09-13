@@ -1,10 +1,15 @@
 from tinydb import TinyDB, Query
 from pathlib import Path
+import os
 
 
 class DatabaseService:
 
-    def __init__(self, file):
+    def __init__(self, file=""):
+        self.file = file
+        path = Path(file)
+        if not path.exists:
+            os.makedirs(os.path.dirname(path))
         self.db = TinyDB(file)
 
     def add_line(self, line: str):
@@ -15,3 +20,6 @@ class DatabaseService:
 
     def read_all(self):
         return self.db.all()
+
+    def exist(self) -> bool:
+        return self.file != ""

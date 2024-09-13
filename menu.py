@@ -50,7 +50,9 @@ class MainWindow(tk.Tk):
         self.url = tk.StringVar()
 
         self.title("Hercules - Download wath you want")
-        self.iconbitmap("./assets/hercules.ico")
+        bitmap_path = "./assets/hercules.ico"
+        if os.path.exists(bitmap_path):
+            self.iconbitmap(bitmap_path)
 
         self.frame_1 = Frame(self)
         self.frame_2 = Frame(self)
@@ -132,7 +134,8 @@ class MainWindow(tk.Tk):
         # Empaquetar las scrollbars
         self.h_scroll.pack(side=tk.BOTTOM, fill=tk.X)
         self.treeview.pack(fill="y", padx=10, pady=10)
-        self.treeview.load_data(self.databaseService.read_all())
+        if self.databaseService.exist():
+            self.treeview.load_data(self.databaseService.read_all())
         self.frame_4.pack(fill=tk.BOTH, side="top")
 
     def download_video(self):
