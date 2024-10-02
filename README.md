@@ -1,7 +1,7 @@
 # Hercules
 Hercules is a simple desktop program to download videos from Youtube in formats like mp3 or mp4.
 
-<img src="./assets/image.png">
+![2024-10-02-00-41-23](https://github.com/user-attachments/assets/20d1b569-0249-4d4c-9bfb-619c633c1d5d)
 
 # Installation
 
