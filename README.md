@@ -7,7 +7,7 @@
       <br />
       Hercules
     </h1>
-    <h4>Powerful yet simple to download youtube music.</h4>
+    <h4>Hear music, hear freedom 💀.</h4>
   </p>
 </div>
 
@@ -23,4 +23,9 @@ Right now you can pick up desktop version [here](https://github.com/axl72/Hercul
 
 ![image](https://github.com/user-attachments/assets/e70ff555-be2d-459e-8678-9c5d01b8c7b2)
 
-# Colaboration
+<h2 style="text-align: left;">💝 Suport</h2>
+There are many ways you can contribute to this project. Let me tell you that by installing this software you are already contributing, however; you can also contribute to the development of new features, fixing problems or by making a donation. Let me know if you are interested.
+
+[![gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:axell.bernabel72@gmail.com?subject=MCOC%20API%20Colaboration&body=Quiero%20colaborar%20porque...)
+
+[![paypal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/axlbernabel)
