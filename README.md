@@ -26,6 +26,14 @@ Right now you can pick up desktop version [here](https://github.com/axl72/Hercul
 <h2 style="text-align: left;">💝 Suport</h2>
 There are many ways you can contribute to this project. Let me tell you that by installing this software you are already contributing, however; you can also contribute to the development of new features, fixing problems or by making a donation. Let me know if you are interested.
 
-[![gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:axell.bernabel72@gmail.com?subject=MCOC%20API%20Colaboration&body=Quiero%20colaborar%20porque...)
+<br/>
+<br/>
+<p align="center">
+    <a href="mailto:axell.bernabel72@gmail.com?subject=MCOC%20API%20Colaboration&body=Quiero%20colaborar%20porque...">
+        <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white"/>
+    </a>
+    <a href="https://paypal.me/axlbernabel">
+        <img src="https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white"/>
+    </a>
+</p>
 
-[![paypal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/axlbernabel)
