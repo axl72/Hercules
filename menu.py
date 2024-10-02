@@ -4,30 +4,18 @@ import tkinter as tk
 from tkinter import ttk
 from pathlib import Path
 from typing import Any
-from tkinter.ttk import Button, Label, Frame, Separator, Combobox
+from tkinter.ttk import Label, Frame, Separator, Combobox
 from tkinter.filedialog import askdirectory
 from core.downloader import Downloader
-from core.config import Config
+from config.config import Config
 from threading import Thread
 from components.TreeView import MyTreeview
+from components.custom_components import Button
 from services.Database import DatabaseService
 
+# from core.FileDonwloader import FileDownloader
 
-class Button(tk.Button):
-    botones_instanciados = 0
-
-    def __init__(self, frame, command=None, text: str = ""):
-        Button.botones_instanciados += 1
-        super().__init__(frame, text=f"Boton de ejemplo {Button.botones_instanciados}")
-        self.configure(
-            command=self.destroy,
-            width=20,
-            height=1,
-            padx=5,
-            pady=5,
-            relief="solid",
-            bg="#F57A81",
-        )
+MY_MUSIC = os.path.join(os.getenv("APPDATA"), "Hercules", "mymusic.json")
 
 
 class MainWindow(tk.Tk):
@@ -41,7 +29,7 @@ class MainWindow(tk.Tk):
         useTk: bool = True,
         sync: bool = False,
         use: str | None = None,
-        databaseService=DatabaseService("./archives/mymusic.json"),
+        databaseService=DatabaseService(MY_MUSIC),
     ) -> None:
         super().__init__(screenName, baseName, className, useTk, sync, use)
         self.databaseService = databaseService
@@ -50,6 +38,14 @@ class MainWindow(tk.Tk):
         self.url = tk.StringVar()
 
         self.title("Hercules - Download wath you want")
+        icon_path = Path("./assets/hercules.ico")
+        if not icon_path.exists():
+            pass
+            # fileDownloader = FileDownloader(
+            #    "https://raw.githubusercontent.com/axl72/Hercules/refs/heads/master/assets/hercules.ico",
+            #    "./assets",
+            # )
+            # fileDownloader.download()
         bitmap_path = "./assets/hercules.ico"
         if os.path.exists(bitmap_path):
             self.iconbitmap(bitmap_path)

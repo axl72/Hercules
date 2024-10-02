@@ -1,5 +1,6 @@
 import json
 import os
+from config import Config
 
 CONFIG_PATH = "./args.conf"
 
@@ -8,7 +9,7 @@ class MakeConfig:
     config = None
 
     @staticmethod
-    def read_config():
+    def read_config() -> Config:
         try:
             with open(CONFIG_PATH, "r") as config_file:
                 MakeConfig.config = json.load(config_file)
