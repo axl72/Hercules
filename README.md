@@ -35,5 +35,8 @@ There are many ways you can contribute to this project. Let me tell you that by 
     <a href="https://paypal.me/axlbernabel">
         <img src="https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white"/>
     </a>
+    <a href="https://buymeacoffee.com/axl7">
+        <img src="https://img.shields.io/badge/-Buy_Me_a_Coffee-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=535353"/>
+    </a>
 </p>
 
