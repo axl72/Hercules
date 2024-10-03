@@ -10,8 +10,8 @@
     <h4>Hear music, hear freedom 💀.</h4>
   </p>
 </div>
-<br/>
 
+# What is this?
 Hercules is an open-source desktop program that allows users to easily download YouTube videos in formats such as MP3 or MP4.
 # Preview 
 
