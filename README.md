@@ -10,9 +10,10 @@
     <h4>Hear music, hear freedom 💀.</h4>
   </p>
 </div>
+<br/>
 
+Hercules is an open-source desktop program that allows users to easily download YouTube videos in formats such as MP3 or MP4.
 # Preview 
-Hercules is a simple desktop program to download videos from Youtube in formats like mp3 or mp4.
 
 ![2024-10-02-00-48-48](https://github.com/user-attachments/assets/59945592-1275-4d01-9ab8-35aa7c33397d)
 
