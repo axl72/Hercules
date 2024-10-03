@@ -13,6 +13,7 @@ SolidCompression=yes
 OutputDir=userdocs:Inno Setup Examples Output
 ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
+OutputBaseFilename=hercules-v1.0.0-win64
 
 [Files]
 ; Crear la carpeta principal y colocar el ejecutable en Hercules //CORREGIR EL NOMBRE DE menu.exe
