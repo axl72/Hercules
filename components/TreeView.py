@@ -5,16 +5,18 @@ class MyTreeview(Treeview):
     def __init__(self, master=None, **kwargs):
         super().__init__(master, **kwargs)
         # Puedes configurar opciones adicionales aquí
-        self.configure(columns=("1", "2", "3"))
+        self.configure(columns=("1", "2", "3", "4"))
         self.heading("#0", text="Title")
-        self.heading("1", text="Size")
-        self.heading("2", text="URL")
-        self.heading("3", text="Saved in")
+        self.heading("1", text="Status")
+        self.heading("2", text="Size")
+        self.heading("3", text="URL")
+        self.heading("4", text="Saved in")
 
         self.column("#0", width=295)
-        self.column("1", width=95, anchor="center")
-        self.column("2", width=300)
+        self.column("1", width=100, anchor="center")
+        self.column("2", width=95, anchor="center")
         self.column("3", width=300)
+        self.column("4", width=300)
         # Configurar otras características o atributos personalizados
         self.bind("<Button-1>", self.on_click)
 
@@ -36,5 +38,10 @@ class MyTreeview(Treeview):
             self.add_node(
                 "",
                 register["title"],
-                (register["size"], register["url"], register["saved_path"]),
+                (
+                    "Completed",
+                    register["size"],
+                    register["url"],
+                    register["saved_path"],
+                ),
             )

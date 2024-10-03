@@ -13,9 +13,18 @@ from components.TreeView import MyTreeview
 from components.custom_components import Button
 from services.Database import DatabaseService
 
+
+
 # from core.FileDonwloader import FileDownloader
 
 MY_MUSIC = os.path.join(os.getenv("APPDATA"), "Hercules", "mymusic.json")
+
+
+def on_progress(stream, chunk, bytes_remaining):
+    total_size = stream.filesize
+    bytes_downloaded = total_size - bytes_remaining
+    percentage_of_completion = bytes_downloaded / total_size * 100
+    print("porcentaje de completación: ", percentage_of_completion)
 
 
 class MainWindow(tk.Tk):
@@ -143,7 +152,7 @@ class MainWindow(tk.Tk):
         url = str(self.input_1.get())
         path = str(self.input_2.get())
 
-        downloaded, data = self.donwloader.download_any(url, path)
+        downloaded, data = self.donwloader.download_any(url, path, callback=on_progress)
         if downloaded:
             values = (str(data["size"]) + " Mb", url, path)
             self.databaseService.add_line(

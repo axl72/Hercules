@@ -21,9 +21,9 @@ def _downloadVideo(url, path, prefix=""):
         return (False, yt.title)
 
 
-def _downloadAudioFromVideo(url, path, prefix=""):
+def _downloadAudioFromVideo(url, path, prefix="", callback=None):
     try:
-        yt = YouTube(url)
+        yt = YouTube(url, on_progress_callback=callback)
         stream = yt.streams.get_audio_only()
         file_name = stream.default_filename.replace("mp4", "mp3")
         audio_size_mb = round(stream.filesize / (1024 * 1024), 2)
@@ -36,11 +36,11 @@ def _downloadAudioFromVideo(url, path, prefix=""):
         return (False, yt.title)
 
 
-def _downloadPlaylist(url, path):
+def _downloadPlaylist(url, path, callback):
     error_list = []
     p = Playlist(url)
     for index, url in enumerate(p.video_urls):
-        result, data = _downloadAudioFromVideo(url, path, f"{index+1}. ")
+        result, data = _downloadAudioFromVideo(url, path, f"{index+1}. ", callback=callback)
         if not result:
             error_list.append(data["title"])
         print(
@@ -49,9 +49,9 @@ def _downloadPlaylist(url, path):
     return error_list
 
 
-def _download_any(url: str, path: str):
+def _download_any(url: str, path: str, callback):
     try:
-        return _downloadAudioFromVideo(url, path)
+        return _downloadAudioFromVideo(url, path, callback=callback)
     except Exception as e:
         try:
             _downloadPlaylist(url, path)
