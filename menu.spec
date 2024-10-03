@@ -22,7 +22,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='hercules-v1.0.0-win64',
+    name='hercules-v1.0.0',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
