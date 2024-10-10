@@ -7,42 +7,18 @@ from core.downloader import Downloader
 from tkinter.filedialog import askdirectory
 from colorama import Fore, Back, Style, init
 from pytube import Playlist, YouTube
+from view.Menu import MainWindow
+from controller.downloader_controller import DownloaderController
 
 # Inicialización de colorama
 init()
 
-parser = argparse.ArgumentParser(description='Process arguments')
-parser.add_argument('-u', '--url', type=str, nargs='*', required=True)
-parser.add_argument('-d', '--directory', type=str, required=False, default=askdirectory())
-parser.add_argument('-l', action='store_true')
+parser = argparse.ArgumentParser(description="Process arguments")
+parser.add_argument("-u", "--url", type=str, nargs="*", required=True)
+parser.add_argument("-d", "--directory", type=str, required=False, default=askdirectory)
+parser.add_argument("-l", action="store_true")
 
 if __name__ == "__main__":
-    args = parser.parse_args()
-    donwloader = Downloader()
-
-    if args.l:
-        title = Playlist(args.url[0]).title
-        print(title)
-        try:
-            path = args.directory
-            if path == "":
-                print(f"{Fore.YELLOW}Descarga cancelada{Fore.RESET}")
-                raise Exception("Ningún directorio fue seleccionado")
-
-
-            print(f"{Fore.CYAN}Directorio donde se descargará la playlist:  {path}{Fore.RESET}")
-        except:
-            #print(args.directory[0], type(args.directory))
-            print("Directorio donde se descargará la playlist:  ", path)
-            sys.exit()
-        error_list = donwloader.download_Playlist(args.url[0], path)
-        print(f"{Fore.BLUE}Descarga terminada exitosamente{Fore.RESET}")
-
-    else:
-        title = YouTube(args.url[0]).title
-        try:
-            path = args.directory + title
-        except:
-            sys.exit()
-
-        estate, title = donwloader.download_video(args.url[0], path)
+    view = MainWindow()
+    controller = DownloaderController(view)
+    controller.run()
