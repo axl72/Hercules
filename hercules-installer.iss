@@ -17,7 +17,7 @@ OutputBaseFilename=hercules-v1.0.0-win64
 
 [Files]
 ; Crear la carpeta principal y colocar el ejecutable en Hercules //CORREGIR EL NOMBRE DE menu.exe
-Source: "C:\Users\Axell\Documents\Github\Hercules\dist\hercules.1.0.0.exe"; DestDir: "{pf}/Hercules"; DestName: "hercules-v1.0.0.exe"
+Source: "C:\Users\Axell\Documents\Github\Hercules\dist\hercules-v1.1.0.exe"; DestDir: "{pf}/Hercules"; DestName: "hercules-v1.1.0.exe"
 Source: "C:\Users\Axell\Documents\Github\Hercules\assets\hercules.ico"; DestDir: "{pf}\Hercules\assets"; Flags: ignoreversion
 
 [Dirs]
@@ -28,10 +28,10 @@ Name: "{userappdata}\Hercules"
 
 [Icons]
 ; Crear un acceso directo del ejecutable en el escritorio
-Name: "{commondesktop}\Hercules"; Filename: "{pf}\Hercules\hercules-v1.0.0.exe"
+Name: "{commondesktop}\Hercules"; Filename: "{pf}\Hercules\hercules-v1.1.0.exe"
 
 ; Crear un acceso directo del programa en el menú de inicio
-Name: "{group}\Hercules"; Filename: "{pf}\Hercules\hercules-v1.0.0.exe"
+Name: "{group}\Hercules"; Filename: "{pf}\Hercules\hercules-v1.1.0.exe"
 
 [Run]
 ; Crear un archivo vacío mymusic.json en la carpeta appdata
@@ -41,4 +41,4 @@ Filename: "cmd"; Parameters: "/c echo. > ""{userappdata}\Roaming\Hercules\mymusi
 Filename: "icacls"; Parameters: """{userappdata}\Roaming\Hercules\mymusic.json"" /grant Everyone:(W)"; Flags: runhidden
 
 ; Opcional: Ejecutar el programa después de la instalación
-Filename: "{pf}\Hercules\hercules-v1.0.0.exe"; Flags: nowait postinstall skipifsilent
+Filename: "{pf}\Hercules\hercules-v1.1.0.exe"; Flags: nowait postinstall skipifsilent
