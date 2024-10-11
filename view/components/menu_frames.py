@@ -41,7 +41,8 @@ class OutputFrame(ttk.Frame):
         self.combo.config(state="readonly")
         self.combo["values"] = (
             "YouTube Video to mp3 (high quality)",
-            "Youtube Video to mp4",
+            "YouTube Video to mp4 1080p60 (Full HD)",
+            "Youtube Video to mp4 720p (High Definition)",
         )
         self.output_extension_label = ttk.Label(self, text="Output Extension")
         self.combo.current(0)

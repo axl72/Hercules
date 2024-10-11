@@ -70,8 +70,10 @@ class MainWindow(tk.Tk, MainMenu):
         output = self.output_frame.combo.get()
         if output == "YouTube Video to mp3 (high quality)":
             return "mp3"
-        elif output == "Youtube Video to mp4":
-            return "mp4"
+        elif output == "Youtube Video to mp4 720p (High Definition)":
+            return "mp4-720p"
+        elif output == "YouTube Video to mp4 1080p60 (Full HD)":
+            return "mp4-1080p"
         else:
             return None  # En caso de que no haya una opción válida seleccionada
 

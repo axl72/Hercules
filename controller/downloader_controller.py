@@ -38,40 +38,39 @@ class DownloaderController:
         os.startfile(path)
 
     def _download(self):
+        downloaded = False
         url = self.view.get_video_url()
         path = self.view.get_pathsave_input()
         output = self.view.get_outputextension()
 
         match output:
-            case "mp4":
-                self.view.raise_error_dialog(
-                    "Error", "This format is not supported yet"
-                )
-                return
-
+            case "mp4-720p":
+                downloaded, data = self.downloader.download_video(path, url, "720p")
             case "mp3":
-
-                downloaded, data = self.downloader.download(path, url)
-                if downloaded:
-                    values = (str(data["size"]) + " Mb", url, path)
-                    self.database.add_line(
-                        {
-                            "title": data["title"],
-                            "size": values[0],
-                            "url": url,
-                            "saved_path": path,
-                        }
-                    )
-                    self.view.add_register_trewview(data["title"], values)
-                print(data)
-                self.view.set_enable_download_button()
-                return
+                downloaded, data = self.downloader.download_audio(path, url)
+            case "mp4-1080p":
+                downloaded, data = self.downloader.download_video(path, url, "1080p")
+        if downloaded:
+            print("Entrando here")
+            values = (str(data["size"]) + " Mb", url, path)
+            self.database.add_line(
+                {
+                    "title": data["title"],
+                    "size": values[0],
+                    "url": url,
+                    "saved_path": path,
+                }
+            )
+            self.view.add_register_trewview(data["title"], values)
+            print(data)
+        print("download completed")
 
     def _download_thread(self):
         print("Downloading")
         self.view.set_disabled_download_button()
         thread = Thread(target=self._download)
         thread.start()
+        self.view.set_enable_download_button()
 
     def run(self):
         self.view.mainloop()
