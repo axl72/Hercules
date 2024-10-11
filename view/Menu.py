@@ -3,8 +3,7 @@ import os
 import tkinter as tk
 from tkinter import ttk
 from pathlib import Path
-from typing import Any
-from tkinter.ttk import Label, Frame, Separator, Combobox
+from tkinter.ttk import Label, Separator
 from view.components.TreeView import MyTreeview
 from view.components.menu_frames import (
     DownloadFrame,
@@ -12,8 +11,7 @@ from view.components.menu_frames import (
     SavePathFrame,
     StatisticsFrame,
 )
-
-# from core.FileDonwloader import FileDownloader
+from interfaces.menu import MainMenu
 
 MY_MUSIC = os.path.join(os.getenv("APPDATA"), "Hercules", "mymusic.json")
 
@@ -56,11 +54,60 @@ class MainWindow(tk.Tk, MainMenu):
         if self.bitmap_path.exists():
             self.iconbitmap(self.bitmap_path)  # Asignación del ícono de la ventana
 
-    def set_path(self, path):
-        self.path = path
+    def set_command_download_button(self, download_function: callable) -> None:
+        self.download_frame.download_button.config(command=download_function)
 
-    def set_entry1(self, new_entry):
-        self.url.set(new_entry)
+    def set_command_clear_button(self, clear_function: callable) -> None:
+        self.download_frame.clear_button.config(command=clear_function)
+
+    def get_video_url(self) -> None:
+        return self.download_frame.urlVar.get()
+
+    def set_video_url(self, url) -> None:
+        return self.download_frame.urlVar.set(url)
+
+    def get_outputextension(self) -> str:
+        output = self.output_frame.combo.get()
+        if output == "YouTube Video to mp3 (high quality)":
+            return "mp3"
+        elif output == "Youtube Video to mp4":
+            return "mp4"
+        else:
+            return None  # En caso de que no haya una opción válida seleccionada
+
+    def get_pathsave_input(self) -> str:
+        return self.savepath_frame.savepath.get()
+
+    def set_pathsave_input(self, new_pathsave: Path) -> None:
+        self.savepath_frame.savepath.set(new_pathsave)
+
+    def set_command_openfolder_button(self, openfolder_function: callable) -> None:
+        self.savepath_frame.open_savepath_directory_button.config(
+            command=openfolder_function
+        )
+
+    def add_register_trewview(
+        self, title: str, music_metadata: tuple[str, str, str]
+    ) -> None:
+        self.statisctis_frame.treeview.add_node("", title, music_metadata)
+
+    def set_trewview(self, registers: list[dict]) -> None:
+        self.statisctis_frame.treeview.load_data(registers)
+
+    def set_enable_download_button(self) -> None:
+        self.download_frame.download_button.config(state=tk.NORMAL)
+
+    def set_disabled_download_button(self) -> None:
+        self.download_frame.download_button.config(state=tk.DISABLED)
+
+    def set_command_pathsave_button(self, pathsave_function: callable) -> None:
+        self.savepath_frame.select_path_button.config(command=pathsave_function)
+
+    def raise_error_dialog(self, title, error) -> None:
+        tk.messagebox.showerror(
+            title=title,
+            message=error,
+        )
 
 
 if __name__ == "__main__":

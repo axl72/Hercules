@@ -9,6 +9,8 @@ from colorama import Fore, Back, Style, init
 from pytube import Playlist, YouTube
 from view.Menu import MainWindow
 from controller.downloader_controller import DownloaderController
+from services.Database import DatabaseService
+from core.config import Config
 
 # Inicialización de colorama
 init()
@@ -20,5 +22,7 @@ parser.add_argument("-l", action="store_true")
 
 if __name__ == "__main__":
     view = MainWindow()
-    controller = DownloaderController(view)
+    downloader = Downloader()
+    database = DatabaseService(Config.DATABASE_PATH)
+    controller = DownloaderController(view, downloader, database)
     controller.run()

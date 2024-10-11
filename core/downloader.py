@@ -1,13 +1,17 @@
 from pathlib import Path
-import core.methods_downloader as md
-import core.service_downloader as sd
+from core.methods_downloader import (
+    _download_any,
+    _downloadAudioFromVideo,
+    _downloadPlaylist,
+)
+from interfaces.downloader import ServiceDownloader
 
 
-class Downloader(sd.ServiceDownloader):
+class Downloader(ServiceDownloader):
     def __init__(self):
-        self.download_video = md._downloadAudioFromVideo
-        self.download_any = md._download_any
-        self.download_Playlist = md._downloadPlaylist
+        self.download_video = _downloadAudioFromVideo
+        self.download_any = _download_any
+        self.download_Playlist = _downloadPlaylist
 
     def download(self, path: str, url: Path):
         return self.download_video(url, path)

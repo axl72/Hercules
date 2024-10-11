@@ -23,12 +23,12 @@ class DownloadFrame(ttk.Frame):
 
         # Packs de componentes
 
-        self.download_button.pack(padx=5, pady=5, fill="x", side="right")
         self.video_url_label.pack(padx=5, pady=2, side="left")
         self.video_url_input.pack(
             pady=2, ipadx=2, expand=True, fill="x", side="left", ipady=5
         )
         self.clear_button.pack(padx=5, pady=5, fill="x", side="right")
+        self.download_button.pack(padx=5, pady=5, fill="x", side="right")
 
 
 class OutputFrame(ttk.Frame):
@@ -67,10 +67,10 @@ class SavePathFrame(ttk.Frame):
         # Packs
 
         self.save_in_label.pack(padx=5, side="left")
-        self.select_path_button.pack(padx=5, pady=5, fill="x", side="right", ipadx=18)
         self.open_savepath_directory_button.pack(
             padx=5, pady=5, fill="x", side="right", ipadx=18
         )
+        self.select_path_button.pack(padx=5, pady=5, fill="x", side="right", ipadx=18)
 
         self.savepath_input.pack(
             pady=5, ipadx=2, expand=True, fill="both", side="left", ipady=5

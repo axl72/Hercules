@@ -23,7 +23,7 @@ class MyTreeview(Treeview):
         self.after(0, self._insert_node, parent, text, values)
 
     def _insert_node(self, parent, text, values):
-        self.insert(parent, "end", text=text, values=values)
+        self.insert(parent, "0", text=text, values=values)
 
     def on_click(self, event):
         """Método para manejar eventos de clic en el Treeview."""
@@ -31,7 +31,8 @@ class MyTreeview(Treeview):
         if item:
             print(f"Clic en el ítem: {self.item(item, 'text')}")
 
-    def load_data(self, registers):
+    def load_data(self, registers: list[dict]):
+        # Ya no es necesario el reverse porque el método add_node inserta la inicio
         for register in registers:
             self.add_node(
                 "",
