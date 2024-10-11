@@ -6,6 +6,7 @@ from pathlib import Path
 from threading import Thread
 from services.Database import DatabaseService
 import os
+from util.datatypes import OutputFormat
 
 
 class DownloaderController:
@@ -42,16 +43,26 @@ class DownloaderController:
         url = self.view.get_video_url()
         path = self.view.get_pathsave_input()
         output = self.view.get_outputextension()
-
+        print(f"Downloading {url} to {path} with format {output}")
         match output:
-            case "mp4-720p":
+            case OutputFormat.MP4_720P.output_value:
                 downloaded, data = self.downloader.download_video(path, url, "720p")
-            case "mp3":
+            case OutputFormat.MP3_ALTA.output_value:
                 downloaded, data = self.downloader.download_audio(path, url)
-            case "mp4-1080p":
+            case OutputFormat.MP4_1080P.output_value:
                 downloaded, data = self.downloader.download_video(path, url, "1080p")
+            case OutputFormat.MP4_144P.output_value:
+                downloaded, data = self.downloader.download_video(path, url, "144p")
+            case OutputFormat.MP4_240P.output_value:
+                downloaded, data = self.downloader.download_video(path, url, "240p")
+            case OutputFormat.MP4_360P.output_value:
+                downloaded, data = self.downloader.download_video(path, url, "360p")
+            case _:
+                print("Format not supported")
+                raise Exception("Format not supported")
+
         if downloaded:
-            print("Entrando here")
+            print("Archivo descargado, registrando información")
             values = (str(data["size"]) + " Mb", url, path)
             self.database.add_line(
                 {

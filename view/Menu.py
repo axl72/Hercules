@@ -12,6 +12,7 @@ from view.components.menu_frames import (
     StatisticsFrame,
 )
 from interfaces.menu import MainMenu
+from util.datatypes import OutputFormat
 
 MY_MUSIC = os.path.join(os.getenv("APPDATA"), "Hercules", "mymusic.json")
 
@@ -67,15 +68,13 @@ class MainWindow(tk.Tk, MainMenu):
         return self.download_frame.urlVar.set(url)
 
     def get_outputextension(self) -> str:
-        output = self.output_frame.combo.get()
-        if output == "YouTube Video to mp3 (high quality)":
-            return "mp3"
-        elif output == "Youtube Video to mp4 720p (High Definition)":
-            return "mp4-720p"
-        elif output == "YouTube Video to mp4 1080p60 (Full HD)":
-            return "mp4-1080p"
-        else:
-            return None  # En caso de que no haya una opción válida seleccionada
+        selected_output = self.output_frame.combo.get()
+        selected_format = next(
+            (f for f in OutputFormat if f.display_text == selected_output), None
+        )
+        if selected_format:
+            output = selected_format.output_value
+            return output
 
     def get_pathsave_input(self) -> str:
         return self.savepath_frame.savepath.get()

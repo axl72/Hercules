@@ -1,6 +1,7 @@
 from tkinter import ttk
 import tkinter as tk
 from view.components.TreeView import MyTreeview
+from util.datatypes import OutputFormat
 
 
 class DownloadFrame(ttk.Frame):
@@ -39,11 +40,8 @@ class OutputFrame(ttk.Frame):
     def create_widgets(self):
         self.combo = ttk.Combobox(self, width=30, style="TCombobox")
         self.combo.config(state="readonly")
-        self.combo["values"] = (
-            "YouTube Video to mp3 (high quality)",
-            "YouTube Video to mp4 1080p60 (Full HD)",
-            "Youtube Video to mp4 720p (High Definition)",
-        )
+        self.combo["values"] = [formato.display_text for formato in OutputFormat]
+
         self.output_extension_label = ttk.Label(self, text="Output Extension")
         self.combo.current(0)
 
