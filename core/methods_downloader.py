@@ -1,4 +1,4 @@
-from pytube import Playlist, YouTube
+from pytubefix import Playlist, YouTube
 import time
 import traceback
 import os
